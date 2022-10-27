@@ -10,6 +10,7 @@ from view.abstract_view import AbstractView
 from view.session import Session
 from business_object.utilisateur import Utilisateur
 
+from dao.DAOprofil import DAOprofil
 
 ASK_FIRST_NAME=inquirer.text(message = 'What\'s your first name')
 ASK_LAST_NAME=inquirer.text(message = 'What\'s your last name')
@@ -21,7 +22,7 @@ ASK_PASSWORD=inquirer.secret(message='What\'s your password.'
         long_instruction="Password require length of 8, 1 cap char, 1 special char and 1 number char.",)
 
 
-class SignInExample(AbstractView):
+class SignIn(AbstractView):
 
 
     def display_info(self):
@@ -37,8 +38,13 @@ class SignInExample(AbstractView):
             ,mail = mail
             ,password = password
         )
-        print(user)
-        Session().user_mdp = user.password
-        Session().user_name = user.pseudo
+        
+        created = DAOprofil().creer_compte(user)
+        if created:
+            Session().user = user
+            print('Votre compte a été créé avec succès')
+        else:
+            print('Vous ne parvenez pas à vous vous inscrire')
+
         from view.start_view import StartView
         return StartView()

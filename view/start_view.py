@@ -11,28 +11,21 @@ class StartView(AbstractView):
         self.__questions = inquirer.select(
             message=f'Bonjour {Session().user_name}'
             , choices=[
-                Choice('Checkbox example')
-                ,Choice('Sign In example')
-                ,Choice("Pokemon choice")
-                ,Choice("Nothing")]
+                Choice('Créer votre compte')
+                ,Choice('Se connecter')
+                ]
         )
         
 
-    def display_info(self):
-        with open('graphical_assets/banner.txt', 'r', encoding="utf-8") as asset:
-            print(asset.read())
 
     def make_choice(self):
         reponse = self.__questions.execute()
-        if reponse == 'Nothing':
-            pass
-        elif reponse== 'Checkbox example':
-            from view.checkbox_example_view import CheckBoxExampleView
-            return CheckBoxExampleView()
-        elif reponse== 'Sign In example':
-            from view.sign_in_example import SignInExample
-            return SignInExample()
-        elif reponse== 'Pokemon choice':
-            from view.change_pokemon_view import ChangePokemonView
-            return ChangePokemonView()
+        if reponse == 'Créer votre compte':
+            from view.sign_in_view import SignIn
+            return SignIn()
+
+        elif reponse== 'Se connecter':
+            from view.connexion_view import ConnexionView
+            return ConnexionView()
+
 

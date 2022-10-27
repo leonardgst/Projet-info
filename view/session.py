@@ -1,5 +1,7 @@
+from typing import List
 from utils.singleton import Singleton
 
+from business_object.utilisateur import Utilisateur
 
 class Session(metaclass=Singleton):
     def __init__(self):
@@ -9,5 +11,6 @@ class Session(metaclass=Singleton):
         ref:type = valeur
         permet de donner le type des variables. Utile pour l'autocompletion.
         """
-        self.user_name: str = None
-        self.user_mdp: str = None
+        self.user: Utilisateur = None
+        self.list_trajet: List = [None]
+
