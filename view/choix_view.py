@@ -3,31 +3,41 @@ from InquirerPy.base.control import Choice
 
 from view.abstract_view import AbstractView
 from view.session import Session
+from InquirerPy.separator import Separator
 
-
-class StartView(AbstractView):
+class ChoixView(AbstractView):
 
     def __init__(self):
         self.__questions = inquirer.select(
-            message=f'Bonjour {Session().user_name}'
+            message=f'Bonjour {Session().user.nom}'
             , choices=[
-                Choice('Se déconnecter')
+                Separator(' ')
+                ,Choice('Se déconnecter')
+                ,Separator('------------------')
                 ,Choice('Faire une recherche')
-                ]
+                ,Separator('------------------')
+                ,Choice('Gérer votre compte')
+                ,Separator(' ')]
         )
         
-
+    def display_info(self):
+        print(f"Bonjour") 
 
     def make_choice(self):
-        reponse = self.__questions.execute()
-        if reponse == 'Faire une recherche':
+        response = self.__questions.execute()
+
+        if response == 'Faire une recherche':
             from view.recherche_view import RechercheView
             return RechercheView()
 
-        elif reponse== 'Se déconnecter':
+        elif response== 'Se déconnecter':
             Session().user = None
-            
+            Session().list_trajet = None
             from view.start_view import StartView
             return StartView()
+
+        elif response == 'Gérer votre compte':
+            from view.change_info_view import ChangerInfo
+            return ChangerInfo()
 
 

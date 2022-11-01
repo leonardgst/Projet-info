@@ -1,7 +1,7 @@
 from typing import List
 from utils.singleton import Singleton
 
-from business_object.utilisateur import Utilisateur
+from business_object.utilisateur.utilisateur import Utilisateur
 
 class Session(metaclass=Singleton):
     def __init__(self):

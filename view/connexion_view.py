@@ -8,7 +8,7 @@ from InquirerPy.base.control import Choice
 
 from view.abstract_view import AbstractView
 from view.session import Session
-from business_object.utilisateur import Utilisateur
+from business_object.utilisateur.utilisateur import Utilisateur
 
 from dao.DAOprofil import DAOprofil
 
@@ -22,16 +22,17 @@ class ConnexionView(AbstractView):
 
     def display_info(self):
         print(f"CONNEXION")
+        print(' ')
 
     def make_choice(self):
-        user_name = ASK_USERNAME.execute()
-        mdp =ASK_PASSWORD.execute()
+        mail = ASK_USERNAME.execute()
+        MDP =ASK_PASSWORD.execute()
         
         ####### VERIFICATION  DE L'EXISTANCE DU COMPTE #####
 
-        if DAOprofil().connexion():
+        if DAOprofil().connexion(mail,MDP):
             print("Felicitations, vous êtes connectez")
-            Session().user_user = user
+            Session().user = DAOprofil().connexion(mail,MDP)
             from view.choix_view import ChoixView
             return ChoixView()
 

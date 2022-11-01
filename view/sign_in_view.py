@@ -1,6 +1,7 @@
 from email.message import Message
 from pprint import pprint
 
+from datetime import datetime
 
 from InquirerPy.validator import PasswordValidator
 from InquirerPy import inquirer
@@ -8,13 +9,13 @@ from InquirerPy.base.control import Choice
 
 from view.abstract_view import AbstractView
 from view.session import Session
-from business_object.utilisateur import Utilisateur
+from business_object.utilisateur.utilisateur import Utilisateur
 
 from dao.DAOprofil import DAOprofil
 
 ASK_FIRST_NAME=inquirer.text(message = 'What\'s your first name')
-ASK_LAST_NAME=inquirer.text(message = 'What\'s your last name')
-ASK_NAISSANCE=inquirer.text(message = 'What\'s your last name')
+ASK_LAST_NAME=inquirer.text(message = 'What\'s your last name?')
+ASK_NAISSANCE=inquirer.text(message = 'Quelle est votre date de naissance (sous forme dd/mm/yyyy)?')
 ASK_MAIL=inquirer.text(message = 'What\'s your mail')
 ASK_PASSWORD=inquirer.secret(message='What\'s your password.'
         ,validate=PasswordValidator(length=8, cap=True, special=True, number=True),
@@ -27,16 +28,20 @@ class SignIn(AbstractView):
 
     def display_info(self):
         print(f"Account creation")
+        print(' ')
 
     def make_choice(self):
-        first_name = ASK_FIRST_NAME.execute()
-        last_name = ASK_LAST_NAME.execute()
+        prenom = ASK_FIRST_NAME.execute()
+        nom = ASK_LAST_NAME.execute()
         mail = ASK_MAIL.execute()
         password =ASK_PASSWORD.execute()
-        user = Utilisateur(first_name = first_name
-            ,last_name = last_name
+        dateNaissance = ASK_NAISSANCE.execute()
+        #dateNaissance = datetime.strptime(dateNaissance, "%d/%m/%Y")
+        user = Utilisateur(prenom = prenom
+            ,nom = nom
             ,mail = mail
-            ,password = password
+            ,MDP = password
+            ,dateNaissance = dateNaissance
         )
         
         created = DAOprofil().creer_compte(user)

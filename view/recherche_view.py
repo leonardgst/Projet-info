@@ -13,6 +13,8 @@ from prompt_toolkit.validation import Validator, ValidationError
 from view.abstract_view import AbstractView
 from view.session import Session
 
+from dao.DAOrecherche import DAOrecherche
+
 DEPART_SELECTION = inquirer.checkbox(
             message="Votre gare de départ: "
             ,choices=[
@@ -33,7 +35,7 @@ DATE_SELECTION = inquirer.text(
             message="Choisir votre date de départ (sous forme dd/mm/yyyy): ")
 
 ELIGIBLE = inquirer.checkbox(
-            message="Places eligible au TGVMax? "
+            message="Places eligibles au TGVMax? "
             ,choices=[
                 Choice('OUI')
                 ,Choice('NON')
@@ -62,14 +64,41 @@ class RechercheView(AbstractView):
             arrivee = ARRIVEE_SELECTION.execute()
             date = DATE_SELECTION.execute()
             eligible = ELIGIBLE.execute()
-            resultat = Recherche
+            resultat = RechercheTrajet().rechercher(depart = depart,
+                                                    arrivee = arrivee,
+                                                    date = date,
+                                                    eligible = eligible,
+                                                    )
+
         elif response== 'Des destinations atteignables durant un weekend':
-            from view.checkbox_example_view import CheckBoxExampleView
-            return CheckBoxExampleView()
-        elif response == 'Déconnexion':
-            Session().user_name = None
-            Session().user_mdp = None
-            
-            from view.start_view import StartView
-            return StartView()
+            depart = DEPART_SELECTION.execute()
+            date = DATE_SELECTION.execute()
+            eligible = ELIGIBLE.execute()
+            resultat = RechercheTrajet().rechercher(depart = depart,
+                                                    arrivee = arrivee,
+                                                    date = date,
+                                                    eligible = eligible,
+                                                    )
+
+        # si aucun trajet ne correspond pas aux critères
+        if not resultat:
+        
+            print('No results')
+            # Demander si il veut creer un alerte?
+            alerte = False
+            alerte = inquirer.confirm(message="Voulez-vous être alerté par email quand une place remplissant vos critères de recherche se libère? (oui/non)",
+                                            confirm_letter="oui", reject_letter="non", 
+                                            default=True).execute()
+            if alerte:
+                DAOrecherche.add_recherche()
+
+            proceed = False
+            proceed = inquirer.confirm(message="Continuer votre recherche? (oui/non)",
+                                            confirm_letter="oui", reject_letter="non", 
+                                            default=True).execute()
+            if proceed:
+                return RecherchView()
+            else: 
+                from view.choix_view import ChoixView
+                return ChoixView()
 

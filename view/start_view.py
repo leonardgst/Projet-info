@@ -2,20 +2,31 @@ from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
 
 from view.abstract_view import AbstractView
-from view.session import Session
+from view.session import Session                                                       
+ 
+from InquirerPy.separator import Separator
 
 
 class StartView(AbstractView):
 
     def __init__(self):
-        self.__questions = inquirer.select(
-            message=f'Bonjour {Session().user_name}'
-            , choices=[
-                Choice('Créer votre compte')
-                ,Choice('Se connecter')
-                ]
-        )
         
+        self.__questions = inquirer.select(
+            message=f'Bonjour, bienvenue à TGVMaximiser!'
+            , choices=[
+                Separator(' '),
+                Choice('Créer votre compte')
+                ,
+                Separator('--------------'),
+                Choice('Se connecter'),
+                Separator(' '),
+                ],
+            
+        )
+
+    def display_info(self):
+
+        print(f"Bonjour") 
 
 
     def make_choice(self):
