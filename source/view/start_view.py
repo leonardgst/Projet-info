@@ -15,7 +15,7 @@ class StartView(AbstractView):
     def __init__(self):
         
         self.__questions = inquirer.select(
-            message=f'Bonjour, bienvenue à TGVMaximiser!'
+            message=f'Bienvenue à TGVMaximiser!'
             , choices=[
                 Separator(' '),
                 Choice('Créer votre compte')
