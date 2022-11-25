@@ -230,7 +230,7 @@ class DAOTrajet():
                     "train_no": datar[k]['train_no'],
                     "heure_arrivee": datar[k]['heure_arrivee'],
                     "axe": datar[k]['axe'],
-                    "destination": dataa[k]['destination'],
+                    "destination": datar[k]['destination'],
                     "entity": datar[k]['entity'],
                     "destination_iata": datar[k]['destination_iata'],
                     "heure_depart": datar[k]['heure_depart'],
