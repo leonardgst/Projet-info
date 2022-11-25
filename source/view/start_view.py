@@ -8,7 +8,10 @@ from InquirerPy.separator import Separator
 
 
 class StartView(AbstractView):
+    """
+        La classe StartView hérite la classe mère AbstractView
 
+    """
     def __init__(self):
         
         self.__questions = inquirer.select(

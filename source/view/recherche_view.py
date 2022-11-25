@@ -85,6 +85,3 @@ class RechercheView(AbstractView):
             return ChoixView()
 
 
-        
-                
-

@@ -9,7 +9,20 @@ import requests as rq
 class RechercheWeekend(AbstractRecherche):
     
     def recherche(self,date, origine, destination, alerter , eligible):
-        
+        """
+        Aller rechercher des trajets correspondant aux critères 
+
+        Parametres:
+
+            date: str de type dd/mm/yyyy
+            origine: str
+            destination: str
+            alerter: bool
+            eligible: str
+
+        Retourner:
+            L : Liste de URL qui contient le trajet
+        """
        
         
         origine_str = str(origine).replace(" ", "+")
@@ -41,6 +54,7 @@ class RechercheWeekend(AbstractRecherche):
         dict_retour = dict_retour.json()
         datatest_retour = [dict_retour["records"][k]for k in range(len(dict_retour["records"]))]
         data_retour=[datatest_retour[k]['fields'] for k in range(len(dict_retour["records"]))]
+        
         for k in range(min(len(data_aller),len(data_retour))):
             print("Le train aller" + data_aller[k]['train_no'] + " à destination de " + data_aller[k]['destination'] + " partira de " + data_aller[k]['origine'] + " à " +  data_aller[k]['heure_depart'])
         for k in range(min(len(data_aller),len(data_retour))):

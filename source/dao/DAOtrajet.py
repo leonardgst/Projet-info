@@ -8,6 +8,22 @@ from utils.singleton import Singleton
 class DAOTrajet():
 
     def DAOTrajet(self,url,typerech,date,origine,destination,eligible,alerter):
+        """
+        Remplir les trajets dans la table Trajet et les critères de recherche dans la table Historique de notre base
+
+        Parametres:
+
+            url: str
+            typerech: str
+            date: str de type dd/mm/yyyy
+            origine: str
+            destination: str
+            eligible: str
+            alerter: str
+
+        Retourner:
+            None
+        """
         ### import d'un dictionnaire via l'API
         if typerech=="trajet" or typerech=="destination":
             dict1=requests.get(url[0])
@@ -232,6 +248,7 @@ class DAOTrajet():
     
             except Exception as error : 
                 print(error)
+
             finally : 
             ###déconnexion + arrêt curseur
                 if cur is not None:

@@ -8,6 +8,17 @@ from utilisateur.utilisateur import Utilisateur
 class DAOprofil(metaclass=Singleton):
     ######################## CHANGER DE MAIL ######################
     def changer_mail(self,user , nouveau_mail):
+        """
+        Changer l'address mail de l'utilisateur
+
+        Parametres:
+
+            user: Utilisateur
+            nouveau_mail: str
+
+        Retourner:
+            Bool (True si le mail est changé avec succès)
+        """
         request=  "UPDATE utilisateur "\
                     "SET mail=%(mail)s"\
                     " WHERE mdp=%(mdp)s RETURNING id_user "
@@ -25,6 +36,17 @@ class DAOprofil(metaclass=Singleton):
 
 ####################### CHANGER DE MOT DE PASSE #####################
     def changer_MDP(self,user , nouveau_mdp):
+        """
+        Changer le mot de passe de l'utilisateur
+
+        Parametres:
+
+            user: Utilisateur
+            nouveau_mdp: str
+
+        Retourner:
+            Bool (True si le mdp est changé avec succès)
+        """
         request=  "UPDATE utilisateur "\
                     "SET mdp=%(mdp)s "\
                     "WHERE mail=%(mail)s RETURNING id_user "  
@@ -48,6 +70,16 @@ class DAOprofil(metaclass=Singleton):
 
 ###################### CREER SON COMPTE #####################
     def creer_compte(self,user: Utilisateur):
+        """
+        Créer une compte d'utilisateur en ajoutant les informations Utilisateur dans le base de données
+
+        Parametres:
+
+            user: Utilisateur
+
+        Retourner:
+            created: Bool (True si la compte est créée avec succès)
+        """
         created = False
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :
@@ -87,6 +119,17 @@ class DAOprofil(metaclass=Singleton):
 
 ###################### SE CONNECTER #####################
     def connexion(self,mail, MDP):
+        """
+        Utilisateur se connecte en utilisant son mail et mdp
+
+        Parametres:
+
+            mail: str
+            mdp: str
+
+        Retourner:
+            user: Utilisateur
+        """
         user = Utilisateur()
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :

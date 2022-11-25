@@ -12,5 +12,4 @@ class Session(metaclass=Singleton):
         permet de donner le type des variables. Utile pour l'autocompletion.
         """
         self.user: Utilisateur = None
-        self.list_trajet: List = [None]
 

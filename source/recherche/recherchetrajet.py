@@ -8,7 +8,20 @@ import requests as rq
 class RechercheTrajet(AbstractRecherche):
     
     def recherche(self,date, origine, destination, alerter : bool = False, eligible = "OUI"):
+        """
+        Aller rechercher des trajets correspondant aux critères 
 
+        Parametres:
+
+            date: str de type dd/mm/yyyy
+            origine: str
+            destination: str
+            alerter: bool
+            eligible: str
+
+        Retourner:
+            L : Liste de URL qui contient le trajet
+        """
         
         origine_str = str(origine).replace(" ", "+")
         origine_str = origine_str.upper()
@@ -28,7 +41,10 @@ class RechercheTrajet(AbstractRecherche):
         dict2=dict1.json()
         datatest=[dict2["records"][k]for k in range(len(dict2["records"]))]
         data=[datatest[k]['fields'] for k in range(len(dict2["records"]))]
-        for k in range(len(data)):
-            print("Le train " + data[k]['train_no'] + " à destination de " + data[k]['destination'] + " partira de " + data[k]['origine'] + " à " +  data[k]['heure_depart'])
+        if len(data)==0:
+            print("Aucun trajet correspond au votre recherche")
+        else:
+            for k in range(len(data)):
+                print("Le train " + data[k]['train_no'] + " à destination de " + data[k]['destination'] + " partira de " + data[k]['origine'] + " à " +  data[k]['heure_depart'])
         return(L)
 

@@ -24,7 +24,10 @@ ASK_PASSWORD=inquirer.secret(message='What\'s your password.'
 
 
 class SignIn(AbstractView):
+    """
+        La classe SignIn hérite la classe mère AbstractView.
 
+    """
 
     def display_info(self):
         print(f"Account creation")
