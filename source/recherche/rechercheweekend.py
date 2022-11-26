@@ -1,8 +1,5 @@
 from datetime import datetime, timedelta
 from recherche.abstractrecherche import AbstractRecherche
-from dao.db_connection import DBConnection
-
-from dao.DAOtrajet import DAOTrajet
 from datetime import datetime
 import requests as rq
 

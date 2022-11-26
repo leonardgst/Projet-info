@@ -1,0 +1,27 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>90</x><y>60</y><w>690</w><h>300</h></coordinates><panel_attributes>Database</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>110</x><y>120</y><w>190</w><h>150</h></coordinates><panel_attributes>Utilisateur
+--
+*_#id_user:  INT NOT NULL_*
+mail TEXT
+MDP TEXT
+dateNaissance TEXT
+nom TEXT
+prenom TEXT</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>120</y><w>190</w><h>150</h></coordinates><panel_attributes>Historique
+--
+*_#id_historique:  INT NOT NULL_*
+type TEXT
+date TEXT
+origine TEXT
+destination TEXT
+eligible TEXT
+alerter  TEXT</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>120</y><w>190</w><h>200</h></coordinates><panel_attributes>Trajets
+--
+*_#id_trajet:  INT NOT NULL_*
+date TEXT
+origine TEXT
+od_happy_card TEXT
+train_no INT
+heure_arrivee TEXT
+axe TEXT
+destination_iata TEXT
+heure_depart TEXT
+origine_iata TEXT</panel_attributes><additional_attributes></additional_attributes></element></diagram>

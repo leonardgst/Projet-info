@@ -54,4 +54,7 @@ class ChangerInfo(AbstractView):
                 print('Mot de passe incorrect')
                 from view.choix_view import ChoixView
                 return ChoixView()
+        
+        
+        
 

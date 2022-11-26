@@ -1,7 +1,4 @@
 from recherche.abstractrecherche import AbstractRecherche
-from dao.db_connection import DBConnection
-
-from dao.DAOtrajet import DAOTrajet
 from datetime import datetime
 import requests as rq
 
@@ -46,10 +43,11 @@ class RechercheDestination(AbstractRecherche):
         datatest=[dict2["records"][k]for k in range(len(dict2["records"]))]
         data=[datatest[k]['fields'] for k in range(len(dict2["records"]))]
         if len(data)==0:
-            print("Aucun trajet correspond au votre recherche")
+            print("Aucun trajet correspond à votre recherche")
         else:
             for k in range(len(data)):
                 print("Le train " + data[k]['train_no'] + " à destination de " + data[k]['destination'] + " partira de " + data[k]['origine'] + " à " +  data[k]['heure_depart'])
         return(L)
+        
 
 

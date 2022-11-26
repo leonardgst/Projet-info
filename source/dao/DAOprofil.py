@@ -30,8 +30,10 @@ class DAOprofil(metaclass=Singleton):
                 "mdp": user.MDP
                 })
             res = cursor.fetchone()
-            if res :
-                return True               
+        if res is not None :
+            return True
+        else :
+            return False             
 
 
 ####################### CHANGER DE MOT DE PASSE #####################

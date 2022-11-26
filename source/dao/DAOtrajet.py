@@ -10,9 +10,7 @@ class DAOTrajet():
     def DAOTrajet(self,url,typerech,date,origine,destination,eligible,alerter):
         """
         Remplir les trajets dans la table Trajet et les critères de recherche dans la table Historique de notre base
-
         Parametres:
-
             url: str
             typerech: str
             date: str de type dd/mm/yyyy
@@ -20,7 +18,6 @@ class DAOTrajet():
             destination: str
             eligible: str
             alerter: str
-
         Retourner:
             None
         """
@@ -230,7 +227,7 @@ class DAOTrajet():
                     "train_no": datar[k]['train_no'],
                     "heure_arrivee": datar[k]['heure_arrivee'],
                     "axe": datar[k]['axe'],
-                    "destination": dataa[k]['destination'],
+                    "destination": datar[k]['destination'],
                     "entity": datar[k]['entity'],
                     "destination_iata": datar[k]['destination_iata'],
                     "heure_depart": datar[k]['heure_depart'],
@@ -238,5 +235,3 @@ class DAOTrajet():
             
             conn.commit()
     
-
-            
