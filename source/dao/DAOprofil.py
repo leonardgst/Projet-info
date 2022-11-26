@@ -163,7 +163,7 @@ class DAOprofil(metaclass=Singleton):
 ###################### VERIFIER SI LE MAIL A ÉTÉ UTILISÉ #####################
     def verifier_mail(self,mail):
         """
-        Cette fonction vérifier si l'addresse mail a été utilisé pour creer un compte
+        Cette fonction vérifie si l'adresse mail a été utilisé pour creer un compte
 
         Parametres:
 

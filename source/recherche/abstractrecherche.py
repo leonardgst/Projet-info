@@ -6,4 +6,11 @@ class AbstractRecherche(ABC):
     """
     @abstractmethod
     def recherche(self):
-        """Méthode abstraite de recherche""" 
+        
+        """
+        Une méthode abstraite qui va aller chercher des trajets par API SNCF
+
+        Returns :
+            List(url) :  une liste des url. Chaque url contient 1 trajet
+        """
+        pass
