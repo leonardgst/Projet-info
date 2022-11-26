@@ -28,7 +28,43 @@ Since the application depends on InquirerPy, it is recommended to use a virtual 
 
 TGVMaximiser offers an easy-to-use interface that will allow you to register or log in, and then search for your trip whether you are looking for a specific trip, a destination or a weekend round trip. Then enter the requested information and the application will give you the trains eligible for your subscription.
 
-# Licence
+For example, here a test of a connexion:
+
+```
+
+Bonjour
+? Bienvenue à TGVMaximiser! 
+>>> Se connecter
+CONNEXION
+
+? Quel est votre mail ?
+>>> test@testmail.com 
+? Quel est votre MDP ? 
+>>> Test
+```
+
+This create an account for the user.
+Now, this is an example of a request for a week-end trip from Rennes to Brest:
+
+```
+
+? Votre gare de départ: 
+>>> rennes
+? Votre gare d'arrivé:
+>>> brest
+? Choisir votre date de départ (sous forme dd/mm/yyyy): 
+>>> 25/11/2022
+? Etre alerté?(OUI/NON): 
+>>>NON
+? Place elligibles au TGVMax?(OUI/NON)
+>>> OUI
+
+Le train aller 8609 à destination de BREST partira de RENNES à 11:29
+Le train retrour 8646 à destination de RENNES partira de BREST à 19:18
+
+```
+
+## Licence
 
 This project is distributed under the terms of the [European Union Public License v. 1.2](https://eupl.eu/1.2/fr/).
 
