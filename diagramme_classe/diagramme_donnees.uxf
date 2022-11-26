@@ -13,7 +13,7 @@ date TEXT
 origine TEXT
 destination TEXT
 eligible TEXT
-alerter  TEXT</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>120</y><w>190</w><h>200</h></coordinates><panel_attributes>Trajets
+alerter  TEXT</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>120</y><w>190</w><h>200</h></coordinates><panel_attributes>Trajets
 --
 *_#id_trajet:  INT NOT NULL_*
 date TEXT
