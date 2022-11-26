@@ -37,6 +37,12 @@ class SignIn(AbstractView):
         prenom = ASK_FIRST_NAME.execute()
         nom = ASK_LAST_NAME.execute()
         mail = ASK_MAIL.execute()
+        used = DAOprofil().verifier_mail(mail)
+        while used:
+            print('Cette addresse mail a été utilisé. Merci de saisir une autre !')
+            mail = ASK_MAIL.execute()
+            used = DAOprofil().verifier_mail(mail)
+
         password =ASK_PASSWORD.execute()
         dateNaissance = ASK_NAISSANCE.execute()
         #dateNaissance = datetime.strptime(dateNaissance, "%d/%m/%Y")

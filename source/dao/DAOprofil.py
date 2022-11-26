@@ -160,5 +160,41 @@ class DAOprofil(metaclass=Singleton):
 
                                
 
+###################### VERIFIER SI LE MAIL A ÉTÉ UTILISÉ #####################
+    def verifier_mail(self,mail):
+        """
+        Cette fonction vérifier si l'addresse mail a été utilisé pour creer un compte
+
+        Parametres:
+
+            mail: str
+
+        Retourner:
+            used: Bool
+        """
+        used = False
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute(
+                    "SELECT * FROM utilisateur "\
+                    "WHERE utilisateur.mail = %(mail)s",
+                    {
+                    "mail": mail}
+                    )
+                res = cursor.fetchall()   
+                
+            
+                 
+        if res :
+            used = True
+        else:
+            used= False
+        return used
+
+                               
+
+
+
+
 
 

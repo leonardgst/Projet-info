@@ -1,5 +1,6 @@
 <diagram program="umletino" version="15.0.0"><zoom_level>9</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>99</x><y>117</y><w>225</w><h>162</h></coordinates><panel_attributes>Utilisateur
 --
+#id : int
 -mail : str
 -nom: str
 -prenom: str
